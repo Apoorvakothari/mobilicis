@@ -100,6 +100,7 @@ const HomePage = () => {
           className="rounded-lg bg-blue-500 px-4 py-2 hover:bg-blue-500/50"
           onClick={() => {
             refreshData()
+            setData(d)
           }}
         >
           Refresh Data
