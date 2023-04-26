@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
+    "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
     "start:dev": "nodemon",
-    "start:prod": "npm run build && cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
