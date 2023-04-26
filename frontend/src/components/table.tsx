@@ -26,7 +26,7 @@ const Table = ({ data, columns }: { data: any[]; columns: ColumnDef<any>[] }) =>
   }
 
   return (
-    <div className="p-3">
+    <div className="center flex-col p-3">
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

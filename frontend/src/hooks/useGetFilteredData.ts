@@ -66,7 +66,7 @@ const useGetFilteredData = () => {
     ["TopTenCitiesWithHighestNumberofUsersAndAvgIncome"],
     async () => {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data/`)
-      const groupByCity = res.data.reduce((groups: any, user: any) => {
+      const groupByCity = res.data.data.reduce((groups: any, user: any) => {
         const city = user.city
         if (!groups[city]) {
           groups[city] = { city, users: [], incomeSum: 0 }
