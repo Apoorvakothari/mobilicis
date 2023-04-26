@@ -4,11 +4,6 @@ import {
   fetchAllData,
   fetchFilteredData,
   fetchRegexFilteredData,
-  fetchIncomeLowerThanFiveAndCarBMWOrMercedes,
-  fetchUsersWithCarBMWMercedesAudiAndEmailIsAlpha,
-  fetchMaleUsersWithPhonePriceMorethanTenThousand,
-  fetchTopTenCitiesWithHighestNumberofUsersAndAvgIncome,
-  fetchUsersWithLastNameStartingWithMAndQuoteLengthGreaterThanFifteenAndEmailIncludesLastName,
 
   /* Interfaces */
   FetchFilteredDataFilter,
@@ -88,71 +83,5 @@ export const getRegexFilteredData = async (req: Request, res: Response) => {
     res.status(200).json({ message: "Data fetched successfully", data: data, error: null })
   } catch (error) {
     res.status(500).json({ message: "An error occured!", data: null, error: error.message })
-  }
-}
-
-/* Specific Endpoints */
-// 1. Users which have income lower than $5 USD and have a car of brand “BMW” or “Mercedes”.
-export const getIncomeLowerThanFiveAndCarBMWOrMercedes = async (req: Request, res: Response) => {
-  try {
-    const data = await fetchIncomeLowerThanFiveAndCarBMWOrMercedes()
-    res.status(200).json(data)
-  } catch (error) {
-    res.status(500).json({ error: error.message })
-  }
-}
-
-// 2. Male Users which have phone price greater than 10,000.
-export const getMaleUsersWithPhonePriceMorethanTenThousand = async (
-  req: Request,
-  res: Response
-) => {
-  try {
-    const data = await fetchMaleUsersWithPhonePriceMorethanTenThousand()
-
-    res.status(200).json(data)
-  } catch (error) {
-    res.status(500).json({ error: error.message })
-  }
-}
-
-// 3. Users whose last name starts with “M” and has a quote character length greater than 15 and email includes his/her last name.
-export const getUsersWithLastNameStartingWithMAndQuoteLengthGreaterThanFifteenAndEmailIncludesLastName =
-  async (req: Request, res: Response) => {
-    try {
-      const data =
-        await fetchUsersWithLastNameStartingWithMAndQuoteLengthGreaterThanFifteenAndEmailIncludesLastName()
-
-      res.status(200).json(data)
-    } catch (error) {
-      res.status(500).json({ error: error.message })
-    }
-  }
-
-// 4. Users which have a car of brand “BMW”, “Mercedes” or “Audi” and whose email does not include any digit.
-export const getUsersWithCarBMWMercedesAudiAndEmailIsAlpha = async (
-  req: Request,
-  res: Response
-) => {
-  try {
-    const data = await fetchUsersWithCarBMWMercedesAudiAndEmailIsAlpha()
-
-    res.status(200).json(data)
-  } catch (error) {
-    res.status(500).json({ error: error.message })
-  }
-}
-
-// 5. Show the data of top 10 cities which have the highest number of users and their average income.
-export const getTopTenCitiesWithHighestNumberofUsersAndAvgIncome = async (
-  req: Request,
-  res: Response
-) => {
-  try {
-    const data = await fetchTopTenCitiesWithHighestNumberofUsersAndAvgIncome()
-
-    res.status(200).json(data)
-  } catch (error) {
-    res.status(500).json({ error: error.message })
   }
 }
