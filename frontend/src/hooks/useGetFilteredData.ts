@@ -7,8 +7,6 @@ const useGetFilteredData = () => {
   const getIncomeLowerThanFiveAndCarBMWOrMercedes = useQuery(
     ["IncomeLowerThanFiveAndCarBMWOrMercedes"],
     async () => {
-      console.clear()
-      console.log(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data/filter`)
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data/filter`, {
         params: {
           incomeMax: 5,
@@ -40,9 +38,9 @@ const useGetFilteredData = () => {
       async () => {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data/filter`, {
           params: {
-            lastName: /^M/,
-            quote: { $regex: /.{15,}/ },
-            email: { $regex: /M/ },
+            lastName: "^M",
+            quote: { $regex: ".{15,}" },
+            email: { $regex: "M" },
           },
         })
         return res.data.data
@@ -53,10 +51,10 @@ const useGetFilteredData = () => {
   const getUsersWithCarBMWMercedesAudiAndEmailIsAlpha = useQuery(
     ["UsersWithCarBMWMercedesAudiAndEmailIsAlpha"],
     async () => {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data/regex`, {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data/filter`, {
         params: {
           car: ["BMW", "Mercedes", "Audi"],
-          email: /^[^\d]*$/,
+          email: "^[a-zA-Z@.]*$",
         },
       })
       return res.data.data

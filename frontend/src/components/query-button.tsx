@@ -22,6 +22,10 @@ const QueryButton: React.FC<QueryButtonInterface> = ({ title, setData, query }) 
       <button
         className="rounded-md bg-white/50 px-4 py-2 hover:bg-white/20"
         onClick={() => {
+          console.clear()
+          console.log(title)
+          console.log("----------------------")
+          console.log(data)
           setData(data)
         }}
       >
