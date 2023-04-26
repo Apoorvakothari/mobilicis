@@ -11,6 +11,14 @@ import {
 } from "../services/data.services"
 
 /* Get all data */
+/**
+ * @title Get All Data
+ * @dev Fetches all data from the database and sends it in the response.
+ * @param req The request object.
+ * @param res The response object.
+ * @return Returns a JSON object with a message, data, and error properties.
+ */
+
 export const getAllData = async (req: Request, res: Response) => {
   try {
     const data = await fetchAllData()
@@ -22,9 +30,14 @@ export const getAllData = async (req: Request, res: Response) => {
 }
 
 /* Filtered Endpoints */
+/**
+ * @title Get Filtered Data
+ * @dev Fetches data from the database based on the specified filters and sends it in the response.
+ * @param req The request object.
+ * @param res The response object.
+ * @return Returns a JSON object with a message, data, and error properties.
+ */
 export const getFilteredData = async (req: Request, res: Response) => {
-  console.log("Query: ", req.query)
-
   try {
     const phonePriceMin = Number(req.query.phonePriceMin)
     const phonePriceMax = Number(req.query.phonePriceMax)
@@ -56,8 +69,6 @@ export const getFilteredData = async (req: Request, res: Response) => {
       quote,
     }
 
-    console.log("Raw filters:", filters)
-
     const data = await fetchFilteredData(filters)
 
     res.status(200).json({ message: "Data fetched successfully", data: data, error: null })
@@ -67,6 +78,13 @@ export const getFilteredData = async (req: Request, res: Response) => {
 }
 
 /* Regex based Endpoints */
+/**
+ * @title Get Regex Filtered Data
+ * @dev Fetches data from the database based on the specified regex filters and sends it in the response.
+ * @param req The request object.
+ * @param res The response object.
+ * @return Returns a JSON object with a message, data, and error properties.
+ */
 export const getRegexFilteredData = async (req: Request, res: Response) => {
   try {
     const { city, car, email, quote } = req.query
