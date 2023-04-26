@@ -25,11 +25,12 @@ export interface FetchFilteredDataFilter {
   first_name?: string
   last_name?: string
   email?: string
-  gender?: "Male" | "Female"
+  gender?: string
   quote?: string
 }
 
 export const fetchFilteredData = async (filters?: FetchFilteredDataFilter) => {
+  console.log("Filters: ", filters)
   try {
     const query: any = {}
 
@@ -50,19 +51,19 @@ export const fetchFilteredData = async (filters?: FetchFilteredDataFilter) => {
     }
 
     if (filters?.car) {
-      query.car = filters.car
+      query.car = typeof filters.car === "string" ? filters.car : { $in: [...filters.car] }
     }
 
     if (filters?.first_name) {
-      query.first_name = filters.first_name
+      query.first_name = { $regex: new RegExp(filters.first_name), $options: "i" }
     }
 
     if (filters?.last_name) {
-      query.last_name = filters.last_name
+      query.last_name = { $regex: new RegExp(filters.last_name), $options: "i" }
     }
 
     if (filters?.email) {
-      query.email = { $regex: `^${filters.email}`, $options: "i" }
+      query.email = { $regex: new RegExp(filters.email), $options: "i" }
     }
 
     if (filters?.gender) {
@@ -70,8 +71,10 @@ export const fetchFilteredData = async (filters?: FetchFilteredDataFilter) => {
     }
 
     if (filters?.quote) {
-      query.quote = { $regex: filters.quote }
+      query.quote = { $regex: new RegExp(filters.quote) }
     }
+
+    console.log("Constructed query: ", query)
 
     const data = await Data.find(query)
 

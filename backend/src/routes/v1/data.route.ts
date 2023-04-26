@@ -3,6 +3,7 @@ import { Router } from "express"
 import {
   getAllData,
   getFilteredData,
+  getRegexFilteredData,
   getIncomeLowerThanFiveAndCarBMWOrMercedes,
   getMaleUsersWithPhonePriceMorethanTenThousand,
   getUsersWithLastNameStartingWithMAndQuoteLengthGreaterThanFifteenAndEmailIncludesLastName,
@@ -12,11 +13,12 @@ import {
 
 const router = Router()
 
-/* Read */
-router.route("/").get(getAllData)
-router.route("/filter").get(getFilteredData)
-router.route("/regex").get(getFilteredData)
+/* Generic Endpoints */
+router.get("/filter", getFilteredData)
+router.get("/regex", getRegexFilteredData)
+router.get("/", getAllData)
 
+/* Specific Endpoints */
 // 1. Users which have income lower than $5 USD and have a car of brand “BMW” or “Mercedes”.
 router.get("/users/income-lower-than-5-and-bmw-mercedes", getIncomeLowerThanFiveAndCarBMWOrMercedes)
 

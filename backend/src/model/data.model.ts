@@ -27,11 +27,11 @@ const schema = new Schema(
       },
     },
     gender: {
-      type: Number,
+      type: String,
       required: true,
     },
     income: {
-      type: String,
+      type: Number,
       required: true,
     },
     city: {

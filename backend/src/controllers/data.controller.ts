@@ -28,6 +28,8 @@ export const getAllData = async (req: Request, res: Response) => {
 
 /* Filtered Endpoints */
 export const getFilteredData = async (req: Request, res: Response) => {
+  console.log("Query: ", req.query)
+
   try {
     const phonePriceMin = Number(req.query.phonePriceMin)
     const phonePriceMax = Number(req.query.phonePriceMax)
@@ -38,7 +40,7 @@ export const getFilteredData = async (req: Request, res: Response) => {
     const firstName = req.query.firstName as string
     const lastName = req.query.lastName as string
     const email = req.query.email as string
-    const gender = req.query.gender as "Male" | "Female"
+    const gender = req.query.gender as string
     const quote = req.query.quote as string
 
     const filters: FetchFilteredDataFilter = {
@@ -58,6 +60,8 @@ export const getFilteredData = async (req: Request, res: Response) => {
       gender,
       quote,
     }
+
+    console.log("Raw filters:", filters)
 
     const data = await fetchFilteredData(filters)
 
