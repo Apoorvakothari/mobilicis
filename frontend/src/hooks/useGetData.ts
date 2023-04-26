@@ -1,8 +1,9 @@
-import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
+import { useQuery } from "@tanstack/react-query"
+
 const useGetData = () => {
-  const { data, isLoading, error } = useQuery(["data"], () =>
+  const { data, isLoading, error, refetch } = useQuery(["data"], () =>
     axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data`).then((res) => {
       console.log(res)
       return res.data.data
@@ -13,6 +14,7 @@ const useGetData = () => {
     data,
     isLoading,
     error,
+    refetch,
   }
 }
 

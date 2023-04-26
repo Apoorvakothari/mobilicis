@@ -1,11 +1,12 @@
+import React from "react"
+
+import useGetData from "@/hooks/useGetData"
 import { ColumnDef } from "@tanstack/react-table"
-import React, { useEffect } from "react"
 
 import Table from "@/components/table"
-import useGetData from "@/hooks/useGetData"
 
 const HomePage = () => {
-  const { data } = useGetData()
+  const { data, refetch } = useGetData()
 
   const columns = React.useMemo<ColumnDef<any>[]>(
     () => [
@@ -68,7 +69,7 @@ const HomePage = () => {
     []
   )
 
-  const refreshData = () => {}
+  const refreshData = () => refetch()
 
   return (
     <>

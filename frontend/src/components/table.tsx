@@ -1,12 +1,12 @@
 import {
   Column,
-  Table as ReactTable,
-  useReactTable,
+  ColumnDef,
+  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  ColumnDef,
-  flexRender,
+  Table as ReactTable,
+  useReactTable,
 } from "@tanstack/react-table"
 
 const Table = ({ data, columns }: { data: any[]; columns: ColumnDef<any>[] }) => {
@@ -26,15 +26,14 @@ const Table = ({ data, columns }: { data: any[]; columns: ColumnDef<any>[] }) =>
   }
 
   return (
-    <div className="p-2">
-      <hr className="h-2" />
+    <div className="p-3">
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <tr key={headerGroup.id} className="text-center">
               {headerGroup.headers.map((header) => {
                 return (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <th key={header.id} colSpan={header.colSpan} className="border p-2">
                     {header.isPlaceholder ? null : (
                       <div>
                         {flexRender(header.column.columnDef.header, header.getContext())}
@@ -54,10 +53,10 @@ const Table = ({ data, columns }: { data: any[]; columns: ColumnDef<any>[] }) =>
         <tbody>
           {table.getRowModel().rows.map((row) => {
             return (
-              <tr key={row.id}>
+              <tr key={row.id} className="text-center">
                 {row.getVisibleCells().map((cell) => {
                   return (
-                    <td key={cell.id}>
+                    <td key={cell.id} className="border p-2">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   )
@@ -112,7 +111,7 @@ const Table = ({ data, columns }: { data: any[]; columns: ColumnDef<any>[] }) =>
               const page = e.target.value ? Number(e.target.value) - 1 : 0
               table.setPageIndex(page)
             }}
-            className="w-16 rounded border p-1"
+            className="w-16 border text-black"
           />
         </span>
         <select
@@ -120,16 +119,15 @@ const Table = ({ data, columns }: { data: any[]; columns: ColumnDef<any>[] }) =>
           onChange={(e) => {
             table.setPageSize(Number(e.target.value))
           }}
+          className="bg-white text-black"
         >
           {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
+            <option key={pageSize} value={pageSize} className="bg-white">
               Show {pageSize}
             </option>
           ))}
         </select>
       </div>
-      <div>{table.getRowModel().rows.length} Rows</div>
-      <pre>{JSON.stringify(table.getState().pagination, null, 2)}</pre>
     </div>
   )
 }
@@ -148,7 +146,7 @@ function Filter({ column, table }: { column: Column<any, any>; table: ReactTable
           column.setFilterValue((old: [number, number]) => [e.target.value, old?.[1]])
         }
         placeholder={`Min`}
-        className="w-24 rounded border shadow"
+        className="w-24 border text-black shadow"
       />
       <input
         type="number"
@@ -157,7 +155,7 @@ function Filter({ column, table }: { column: Column<any, any>; table: ReactTable
           column.setFilterValue((old: [number, number]) => [old?.[0], e.target.value])
         }
         placeholder={`Max`}
-        className="w-24 rounded border shadow"
+        className="w-24 border text-black shadow"
       />
     </div>
   ) : (
@@ -166,7 +164,7 @@ function Filter({ column, table }: { column: Column<any, any>; table: ReactTable
       value={(columnFilterValue ?? "") as string}
       onChange={(e) => column.setFilterValue(e.target.value)}
       placeholder={`Search...`}
-      className="w-36 rounded border shadow"
+      className="w-full border text-black shadow"
     />
   )
 }
