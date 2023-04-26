@@ -1,5 +1,8 @@
 ## Introduction
 
+The source code for Mobilicis is available on GitHub: https://github.com/Apoorvakothari/mobilicis
+Mobilicis is hosted on Vercel, and can be accessed at the following URL: https://mobilicis-nu.vercel.app/
+
 The frontend application is built using Next.js and Tailwind, which allows for easy and efficient styling of the web pages. Next.js is a React-based framework that enables server-side rendering, providing better performance and faster load times for the web pages. Tailwind is a CSS framework that provides pre-defined classes for styling, making it easier to design web pages without the need for custom CSS.
 
 The Typescript language is used to provide added type safety to the codebase, which ensures that there are fewer runtime errors and that the code is easier to maintain. ESLint and Prettier are used to maintain a proper code structure, ensuring that the code is consistent and easy to read.
@@ -54,30 +57,40 @@ The MongoDB database is used to store the sample data provided in the "sample_da
 
 > This will start the development server and client and you should be able to see your client running at [`http://localhost:3000`](http://localhost:3000) in your browser and browser at [`http://localhost:5000`](http://localhost:5000) .
 
-## Source Code
+## Code explanations
 
-The source code for Mobilicis is available on GitHub: https://github.com/Apoorvakothari/mobilicis
+The entire project is a monorepo consisting of a frontend built using Next.js with tailwind css and a backend written in Node-Express and a Mongo Database
 
-The source code for this project is divided into Two folders, with each folder containing different files that serve different purposes.
+### Project Structure
 
-The src folder contains the main source code for the project, including the API routes, controllers, and database models. The public folder contains the static assets for the frontend application, such as images and fonts.
+**Frontend**
+The frontend folder contains the main source code for the frontend application. This includes the pages, components, styles, and utility functions.
 
-The components folder contains reusable React components that are used throughout the frontend application. The pages folder contains the different pages of the frontend application, each represented by a separate file.
+- pages: Contains the different pages of the frontend application, each represented by a separate file.
+- components: Contains reusable React components that are used throughout the frontend application.
+- styles: Contains the global styles for the frontend application.
+- hooks: Contains custom React hooks used by the frontend application
+- utils: Contains utility functions and modules that are used throughout the project, such as database connection functions and data processing functions.
+- interface: Contains TypeScript interfaces used throughout the frontend application.
 
-The utils folder contains utility functions and modules that are used throughout the project, such as database connection functions and data processing functions.
+**Backend**
+The backend folder contains the main source code for the backend API. This includes the routes, controllers, models, and database connection functions.
 
-The API routes are defined in the routes folder, with each route having a corresponding controller function defined in the controllers folder. The controllers are responsible for processing the data and returning it to the client in the correct format.
+- config: Contains the application configuration files
+- routes: Defines the API routes, with each route having a corresponding controller function defined in the controllers folder.
+- controllers: Processes the data apply thr business logic and returns it to the client in the correct format.
+- services: Contains services used by the backend server to interact with external entities like Database and other APIs
+- models: Defines the structure of the data and provides methods for interacting with the database.
+- utils: Contains utility functions and modules that are used throughout the project, such as database connection functions and data processing functions.
 
-The database models are defined in the models folder, with each model representing a different collection in the MongoDB database. The models define the structure of the data and provide methods for interacting with the database.
+### Technology Stack
 
-## Hostname and URL
+The project is built with the following technologies:
 
-Mobilicis is hosted on Vercel, which provides fast and reliable hosting for web applications and can be accessed at the following URL: https://mobilicis-nu.vercel.app/
-
-### Local Development
-
-To run the Mobilicis website locally, follow these steps:
-
-1.Clone the GitHub repository to your local machine.
-2.Install the necessary dependencies by running npm install.
-3.Start the local development server by running npm run dev.
+- Next.js: Next.js is a popular React framework that offers server-side rendering and other performance optimizations out of the box, making it a great choice for building high-performance web applications.
+- Tailwind: Tailwind CSS is a utility-first CSS framework that offers a lot of pre-defined styles and classes, making it easy to style components without writing custom CSS.
+- Typescript: TypeScript is a typed superset of JavaScript that offers static type checking, making it easier to catch errors during development and improve code maintainability.
+- TanStack: TanStack is a set of open source technologies including React, TypeScript, GraphQL, and Prisma, which together provide an efficient and streamlined way to build scalable web applications.
+- Node.js: Node.js is a popular server-side JavaScript runtime that offers a non-blocking I/O model and a rich ecosystem of third-party libraries, making it a great choice for building scalable web applications.
+- Express.js: Express.js is a minimalist web framework for Node.js that provides a lot of flexibility and a rich set of features for building web applications.
+- MongoDB: Mongo is a popular NoSQL database that offers high performance, scalability, and flexibility, making it a great choice for storing and managing large amounts of unstructured data. Here it is used to store the sample data provided in the "sample_data.json" file, which is then used to fetch specific data based on the requirements given in the task.
